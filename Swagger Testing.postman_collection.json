@@ -1,0 +1,1163 @@
+{
+	"info": {
+		"_postman_id": "ad82371b-e7e6-44e2-bd68-d24752c8a03a",
+		"name": "Swagger Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29700652"
+	},
+	"item": [
+		{
+			"name": "address-controller",
+			"item": [
+				{
+					"name": "Create Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjIzMTMsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.JB0yiIr4tYzLuh5a2ta6BjkneasK0NzvZuK0uC-2kvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"street\": \"123 Main Street\",\r\n  \"buildingName\": \"Sunrise Apartments\",\r\n  \"city\": \"Los Angeles\",\r\n  \"state\": \"California\",\r\n  \"country\": \"USA\",\r\n  \"pincode\": \"900123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/address",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/addresses",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Address by addressId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/addresses/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"addresses",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Address by addressId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"addressId\": 6,\r\n        \"street\": \"102 Birch Blvd\",\r\n        \"buildingName\": \"Greenwood Residences\",\r\n        \"city\": \"New York\",\r\n        \"state\": \"New York\",\r\n        \"country\": \"USA\",\r\n        \"pincode\": \"100010\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/addresses/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"addresses",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Address by addressId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/addresses/6",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"addresses",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth-controller",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"ethan.taylor@example.com\",\r\n  \"password\": \"AdminPass7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 11,\r\n  \"firstName\": \"Ethan\",\r\n  \"lastName\": \"Taylor\",\r\n  \"mobileNumber\": \"1234567007\",\r\n  \"email\": \"ethan.taylor@example.com\",\r\n  \"password\": \"AdminPass7\",\r\n  \"roles\": [\r\n    {\r\n      \"roleId\": 7,\r\n      \"roleName\": \"ADMIN\"\r\n    }\r\n  ],\r\n  \"address\": {\r\n    \"addressId\": 107,\r\n    \"street\": \"106 Admin Plaza\",\r\n    \"buildingName\": \"Executive Suites\",\r\n    \"city\": \"Boston\",\r\n    \"state\": \"Massachusetts\",\r\n    \"country\": \"USA\",\r\n    \"pincode\": \"021089\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cart-controller",
+			"item": [
+				{
+					"name": "Get Carts Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjY3MzQsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.eSZJqj_mRB3wXj4NJ1KdE6r4qONcmUgJy1ofnTamPvY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/carts",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/carts/12/product/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"carts",
+								"12",
+								"product",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjkwOTIsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.Gzut6Pv1LKX7fVq1y3bjRUcZm65rprHmbKrAJAdSFtU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cartId\": 12,\r\n  \"totalPrice\": 25415,\r\n  \"products\": [\r\n    {\r\n      \"productId\": 11,\r\n      \"productName\": \"Smart Air Purifiers\",\r\n      \"image\": \"https://example.com/images/air-purifier.jpg\",\r\n      \"description\": \"Smart air purifier with HEPA filter, app control, and air quality monitor.\",\r\n      \"quantity\": 100,\r\n      \"price\": 299,\r\n      \"discount\": 15,\r\n      \"specialPrice\": 254.15\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/public/carts/{cartId}/products/{productId}/quantity/{quantity}",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"carts",
+								"{cartId}",
+								"products",
+								"{productId}",
+								"quantity",
+								"{quantity}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Product to Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjY3MzQsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.eSZJqj_mRB3wXj4NJ1KdE6r4qONcmUgJy1ofnTamPvY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cartId\": 12,\r\n  \"totalPrice\": 25415,\r\n  \"products\": [\r\n    {\r\n      \"productId\": 11,\r\n      \"productName\": \"Smart Air Purifier\",\r\n      \"image\": \"https://example.com/images/air-purifier.jpg\",\r\n      \"description\": \"Smart air purifier with HEPA filter, app control, and air quality monitor.\",\r\n      \"quantity\": 100,\r\n      \"price\": 299,\r\n      \"discount\": 15,\r\n      \"specialPrice\": 254.15\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/public/carts/12/products/11/quantity/100",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"carts",
+								"12",
+								"products",
+								"11",
+								"quantity",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cart User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk0NjEsImVtYWlsIjoibm9haC5taWxsZXJAZXhhbXBsZS5jb20ifQ.HTwuNpgqkPqF6cUgO4OiXkt0HZQZRdrj1mdISsW5nqw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/public/users/noah.miller@example.com/carts/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"noah.miller@example.com",
+								"carts",
+								"11"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "category-controller",
+			"item": [
+				{
+					"name": "Edit Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk1NjYsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.5ON4gnp3YW9ELsCMC6D_J-RQEPg9clfQMgKCrAqJBiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 1,\r\n    \"categoryName\": \"Foods\",\r\n    \"products\": [\r\n      \r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/categories/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"categories",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk1NjYsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.5ON4gnp3YW9ELsCMC6D_J-RQEPg9clfQMgKCrAqJBiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/categories/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"categories",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjQ2NDUsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.0uO016NR1nJNxF76mS8J9e0mlK0BibkWbawvv8wuCq8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 3,\r\n    \"categoryName\": \"Foods\",\r\n    \"products\": [\r\n      \r\n    ]\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/category",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjM4ODcsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.BbC_PJg5ZRk-luJoPWcGujlj2Q0Q8SsW6s69dz0L8Y8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "order-controller",
+			"item": [
+				{
+					"name": "Get Orders Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk1NjYsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.5ON4gnp3YW9ELsCMC6D_J-RQEPg9clfQMgKCrAqJBiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk1NjYsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.5ON4gnp3YW9ELsCMC6D_J-RQEPg9clfQMgKCrAqJBiw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/users/olivia.martinez@example.com/orders/4/orderStatus/finished",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"olivia.martinez@example.com",
+								"orders",
+								"4",
+								"orderStatus",
+								"finished"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk3MzAsImVtYWlsIjoibm9haC5taWxsZXJAZXhhbXBsZS5jb20ifQ.LPfMPkhYg-wDDLZT356V93AkLh9gtCOD-y52CX84nT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/public/users/noah.miller@example.com/carts/12/payments/credit/order",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"noah.miller@example.com",
+								"carts",
+								"12",
+								"payments",
+								"credit",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk3MzAsImVtYWlsIjoibm9haC5taWxsZXJAZXhhbXBsZS5jb20ifQ.LPfMPkhYg-wDDLZT356V93AkLh9gtCOD-y52CX84nT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/users/noah.miller@example.com/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"noah.miller@example.com",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Orders User by orderId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk3MzAsImVtYWlsIjoibm9haC5taWxsZXJAZXhhbXBsZS5jb20ifQ.LPfMPkhYg-wDDLZT356V93AkLh9gtCOD-y52CX84nT8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/users/noah.miller@example.com/orders/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"noah.miller@example.com",
+								"orders",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "product-controller",
+			"item": [
+				{
+					"name": "Add Product to Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk4NDgsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.k7rVx68izMUBmsDLR41GJWCnh0Hhzf63VAB7DMFz9uE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"productId\": 20,\r\n      \"productName\": \"Dehumidifier Ultra\",\r\n      \"image\": \"https://example.com/images/dehumidifier.jpg\",\r\n      \"description\": \"High-efficiency dehumidifier with quiet operation and adjustable humidity levels.\",\r\n      \"quantity\": 110,\r\n      \"price\": 180,\r\n      \"discount\": 5,\r\n      \"specialPrice\": 171\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/categories/2/product",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"categories",
+								"2",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk4NDgsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.k7rVx68izMUBmsDLR41GJWCnh0Hhzf63VAB7DMFz9uE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"productId\": 20,\r\n      \"productName\": \"Dehumidifier Ultras\",\r\n      \"image\": \"https://example.com/images/dehumidifier.jpg\",\r\n      \"description\": \"High-efficiency dehumidifier with quiet operation and adjustable humidity levels.\",\r\n      \"quantity\": 110,\r\n      \"price\": 180,\r\n      \"discount\": 5,\r\n      \"specialPrice\": 171\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/products/20",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"products",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk4NDgsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.k7rVx68izMUBmsDLR41GJWCnh0Hhzf63VAB7DMFz9uE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/products/20",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"products",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product Image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/mnsub/OneDrive/Pictures/Documents/messageImage_1692886575399.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/admin/products/19/image",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"products",
+								"19",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products from Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/categories/1/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"categories",
+								"1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjM4ODcsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.BbC_PJg5ZRk-luJoPWcGujlj2Q0Q8SsW6s69dz0L8Y8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Products With Keyword",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/products/keyword/Laptop",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"products",
+								"keyword",
+								"Laptop"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user-controller",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjM4ODcsImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.BbC_PJg5ZRk-luJoPWcGujlj2Q0Q8SsW6s69dz0L8Y8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by userId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/admin/users/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by userId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/public/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User by userId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJVc2VyIERldGFpbHMiLCJpc3MiOiJFdmVudCBTY2hlZHVsZXIiLCJpYXQiOjE3MzkzNjk5NzksImVtYWlsIjoiZXRoYW4udGF5bG9yQGV4YW1wbGUuY29tIn0.RMwiKqFDcZTxpFciwPobVAvtG9zb4OUM4U4x1APbf6U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": 2,\r\n    \"firstName\": \"Sophia\",\r\n    \"lastName\": \"Johnson\",\r\n    \"mobileNumber\": \"9876543210\",\r\n    \"email\": \"sophia.johnson@example.com\",\r\n    \"password\": \"$2a$10$nyqnkbclIG600COpPfofrOWEV6N4QIiebHGdX8fNQAnIjZCIAwQgy\",\r\n    \"roles\": [\r\n        {\r\n            \"roleId\": 2,\r\n            \"roleName\": \"USER\"\r\n        },\r\n        {\r\n            \"roleId\": 102,\r\n            \"roleName\": \"USER\"\r\n        }\r\n    ],\r\n    \"address\": {\r\n        \"addressId\": 4,\r\n        \"street\": \"456 Maple Rd\",\r\n        \"buildingName\": \"Sunnyvale Heightss\",\r\n        \"city\": \"San Francisco\",\r\n        \"state\": \"California\",\r\n        \"country\": \"USA\",\r\n        \"pincode\": \"941050\"\r\n    },\r\n    \"cart\": {\r\n        \"cartId\": 3,\r\n        \"totalPrice\": 0.0,\r\n        \"products\": []\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/public/users/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"public",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
