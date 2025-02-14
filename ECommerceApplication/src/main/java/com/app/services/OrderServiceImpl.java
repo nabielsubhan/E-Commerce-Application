@@ -25,6 +25,7 @@ import com.app.exceptions.ResourceNotFoundException;
 import com.app.payloads.OrderDTO;
 import com.app.payloads.OrderItemDTO;
 import com.app.payloads.OrderResponse;
+import com.app.repositories.AddressRepo;
 import com.app.repositories.CartItemRepo;
 import com.app.repositories.CartRepo;
 import com.app.repositories.OrderItemRepo;
@@ -57,6 +58,9 @@ public class OrderServiceImpl implements OrderService {
 	public CartItemRepo cartItemRepo;
 
 	@Autowired
+	public AddressRepo addressRepo;
+
+	@Autowired
 	public UserService userService;
 
 	@Autowired
@@ -68,6 +72,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDTO placeOrder(String email, Long cartId, Address shippingAddress) {
 
+		shippingAddress = addressRepo.save(shippingAddress);
 		Cart cart = cartRepo.findCartByEmailAndCartId(email, cartId);
 
 		if (cart == null) {
