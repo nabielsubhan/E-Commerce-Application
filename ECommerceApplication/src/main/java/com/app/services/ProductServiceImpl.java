@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.app.entites.Brand;
 import com.app.entites.Cart;
 import com.app.entites.Category;
 import com.app.entites.Product;
@@ -22,6 +23,7 @@ import com.app.exceptions.ResourceNotFoundException;
 import com.app.payloads.CartDTO;
 import com.app.payloads.ProductDTO;
 import com.app.payloads.ProductResponse;
+import com.app.repositories.BrandRepo;
 import com.app.repositories.CartRepo;
 import com.app.repositories.CategoryRepo;
 import com.app.repositories.ProductRepo;
@@ -39,6 +41,9 @@ public class ProductServiceImpl implements ProductService {
 	private CategoryRepo categoryRepo;
 
 	@Autowired
+	private BrandRepo brandRepo;
+
+	@Autowired
 	private CartRepo cartRepo;
 
 	@Autowired
@@ -54,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 	private String path;
 
 	@Override
-	public ProductDTO addProduct(Long categoryId, Product product) {
+	public ProductDTO addProduct(Long categoryId, Long brandId, Product product) {
 
 		Category category = categoryRepo.findById(categoryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "categoryId", categoryId));
@@ -80,9 +85,31 @@ public class ProductServiceImpl implements ProductService {
 			double specialPrice = product.getPrice() - ((product.getDiscount() * 0.01) * product.getPrice());
 			product.setSpecialPrice(specialPrice);
 
-			Product savedProduct = productRepo.save(product);
+			Brand brand = brandRepo.findById(brandId)
+				.orElseThrow(() -> new ResourceNotFoundException("Brand", "brandId", brandId));
+			
+			boolean isProductNotPresentInBrand = true;
 
-			return modelMapper.map(savedProduct, ProductDTO.class);
+			List<Product> productsInBrand = brand.getProducts();
+
+			for (int i = 0; i < productsInBrand.size(); i++) {
+				if (products.get(i).getProductName().equals(product.getProductName())
+						&& products.get(i).getDescription().equals(product.getDescription())) {
+	
+					isProductNotPresentInBrand = false;
+					break;
+				}
+			}
+
+			if (isProductNotPresentInBrand && isProductNotPresent) {
+				product.setBrand(brand);
+				Product savedProduct = productRepo.save(product);
+				return modelMapper.map(savedProduct, ProductDTO.class);
+			} else {
+				throw new APIException("Product already exists !!!");
+			}
+
+
 		} else {
 			throw new APIException("Product already exists !!!");
 		}
@@ -133,6 +160,41 @@ public class ProductServiceImpl implements ProductService {
 
 		if (products.size() == 0) {
 			throw new APIException(category.getCategoryName() + " category doesn't contain any products !!!");
+		}
+
+		List<ProductDTO> productDTOs = products.stream().map(p -> modelMapper.map(p, ProductDTO.class))
+				.collect(Collectors.toList());
+
+		ProductResponse productResponse = new ProductResponse();
+
+		productResponse.setContent(productDTOs);
+		productResponse.setPageNumber(pageProducts.getNumber());
+		productResponse.setPageSize(pageProducts.getSize());
+		productResponse.setTotalElements(pageProducts.getTotalElements());
+		productResponse.setTotalPages(pageProducts.getTotalPages());
+		productResponse.setLastPage(pageProducts.isLast());
+
+		return productResponse;
+	}
+
+	@Override
+	public ProductResponse searchByBrand(Long brandId, Integer pageNumber, Integer pageSize, String sortBy,
+			String sortOrder) {
+
+		Brand brand = brandRepo.findById(brandId)
+				.orElseThrow(() -> new ResourceNotFoundException("Brand", "brandId", brandId));
+
+		Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending()
+				: Sort.by(sortBy).descending();
+
+		Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+
+		Page<Product> pageProducts = productRepo.findByBrand(brand, pageDetails);
+
+		List<Product> products = pageProducts.getContent();
+
+		if (products.size() == 0) {
+			throw new APIException(brand.getBrandName() + " brand doesn't contain any products !!!");
 		}
 
 		List<ProductDTO> productDTOs = products.stream().map(p -> modelMapper.map(p, ProductDTO.class))
@@ -250,36 +312,36 @@ public class ProductServiceImpl implements ProductService {
 		return "Product with productId: " + productId + " deleted successfully !!!";
 	}
 
-	@Override
-	public ProductResponse searchProductByBrandName(String brandName, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
+	// @Override
+	// public ProductResponse searchProductByBrandName(String brandName, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
 
-		Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending()
-				: Sort.by(sortBy).descending();
+	// 	Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending()
+	// 			: Sort.by(sortBy).descending();
 
-		Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+	// 	Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
 
-		Page<Product> pageProducts = productRepo.findByBrand_BrandName(brandName, pageDetails);
+	// 	Page<Product> pageProducts = productRepo.findByBrand_BrandName(brandName, pageDetails);
 
-		List<Product> products = pageProducts.getContent();
+	// 	List<Product> products = pageProducts.getContent();
 
-		if (products.size() == 0) {
-			throw new APIException("No products found for brand: " + brandName);
-		}
+	// 	if (products.size() == 0) {
+	// 		throw new APIException("No products found for brand: " + brandName);
+	// 	}
 
-		List<ProductDTO> productDTOs = products.stream()
-				.map(p -> modelMapper.map(p, ProductDTO.class))
-				.collect(Collectors.toList());
+	// 	List<ProductDTO> productDTOs = products.stream()
+	// 			.map(p -> modelMapper.map(p, ProductDTO.class))
+	// 			.collect(Collectors.toList());
 
-		ProductResponse productResponse = new ProductResponse();
-		productResponse.setContent(productDTOs);
-		productResponse.setPageNumber(pageProducts.getNumber());
-		productResponse.setPageSize(pageProducts.getSize());
-		productResponse.setTotalElements(pageProducts.getTotalElements());
-		productResponse.setTotalPages(pageProducts.getTotalPages());
-		productResponse.setLastPage(pageProducts.isLast());
+	// 	ProductResponse productResponse = new ProductResponse();
+	// 	productResponse.setContent(productDTOs);
+	// 	productResponse.setPageNumber(pageProducts.getNumber());
+	// 	productResponse.setPageSize(pageProducts.getSize());
+	// 	productResponse.setTotalElements(pageProducts.getTotalElements());
+	// 	productResponse.setTotalPages(pageProducts.getTotalPages());
+	// 	productResponse.setLastPage(pageProducts.isLast());
 
-		return productResponse;
-	}
+	// 	return productResponse;
+	// }
 
 
 }
