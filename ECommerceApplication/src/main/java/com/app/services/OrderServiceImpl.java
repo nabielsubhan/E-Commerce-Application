@@ -230,12 +230,21 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDTO applyCoupon(Long orderId, String couponCode) {
 		Order order = orderRepo.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order", "orderId", orderId));
-		Coupon couponUsed = couponRepo.findByCouponCode(couponCode)
-				.orElseThrow(() -> new ResourceNotFoundException("Coupon", "couponCode", couponCode));
+		Coupon couponUsed = couponRepo.findByCouponCode(couponCode);
+
+		if (couponUsed == null) {
+			throw new ResourceNotFoundException("Coupon", "couponId", couponCode);
+		}
 
 		if (order.getCoupon() != null) {
 			throw new APIException("Coupon already applied to the order");
 		}
+
+		if(couponUsed.getQuota() <= 0){
+			throw new APIException("Coupon already achieved its quota");
+		}
+
+		couponUsed.setQuota(couponUsed.getQuota()-1);
 
 		double amountBeforeDiscount = order.getTotalAmount();
 		double amountAfterDiscount = amountBeforeDiscount-amountBeforeDiscount*couponUsed.getDiscountPercentage();

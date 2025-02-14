@@ -23,7 +23,7 @@ public class CouponServiceImpl implements CouponService {
 
         @Override
         public CouponDTO createCoupon(Coupon coupon) {
-            Coupon savedCoupon = couponRepo.findByCouponCode(coupon.getCouponCode()).orElseThrow(() -> new APIException("Coupon with the code '" + coupon.getCouponCode() + "Does not exist !!!"));
+            Coupon savedCoupon = couponRepo.findByCouponCode(coupon.getCouponCode());
 
             if (savedCoupon != null) {
                 throw new APIException("Coupon with the code '" + coupon.getCouponCode() + "' already exists !!!");
