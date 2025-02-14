@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.app.entites.Address;
 import com.app.entites.Cart;
 import com.app.entites.CartItem;
 import com.app.entites.Order;
@@ -65,7 +66,7 @@ public class OrderServiceImpl implements OrderService {
 	public ModelMapper modelMapper;
 
 	@Override
-	public OrderDTO placeOrder(String email, Long cartId, String paymentMethod) {
+	public OrderDTO placeOrder(String email, Long cartId, Address shippingAddress) {
 
 		Cart cart = cartRepo.findCartByEmailAndCartId(email, cartId);
 
@@ -81,9 +82,10 @@ public class OrderServiceImpl implements OrderService {
 		order.setTotalAmount(cart.getTotalPrice());
 		order.setOrderStatus("Order Accepted !");
 
+		order.setShippingAddress(shippingAddress);
+
 		Payment payment = new Payment();
 		payment.setOrder(order);
-		payment.setPaymentMethod(paymentMethod);
 
 		payment = paymentRepo.save(payment);
 

@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -52,6 +53,9 @@ public class Address {
 
 	@ManyToMany(mappedBy = "addresses")
 	private List<User> users = new ArrayList<>();
+
+	@OneToMany(mappedBy = "address")
+    private List<Order> orders;
 
 	public Address(String country, String state, String city, String pincode, String street, String buildingName) {
 		this.country = country;
