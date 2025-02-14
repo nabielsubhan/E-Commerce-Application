@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.app.entites.*;
+import com.app.repositories.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,29 +15,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.app.entites.Cart;
-import com.app.entites.CartItem;
-import com.app.entites.Order;
-import com.app.entites.OrderItem;
-import com.app.entites.Payment;
-import com.app.entites.Product;
 import com.app.exceptions.APIException;
 import com.app.exceptions.ResourceNotFoundException;
 import com.app.payloads.OrderDTO;
 import com.app.payloads.OrderItemDTO;
 import com.app.payloads.OrderResponse;
-import com.app.repositories.CartItemRepo;
-import com.app.repositories.CartRepo;
-import com.app.repositories.OrderItemRepo;
-import com.app.repositories.OrderRepo;
-import com.app.repositories.PaymentRepo;
-import com.app.repositories.UserRepo;
 
 import jakarta.transaction.Transactional;
 
 @Transactional
 @Service
 public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	public CouponRepo couponRepo;
 
 	@Autowired
 	public UserRepo userRepo;
@@ -232,6 +225,24 @@ public class OrderServiceImpl implements OrderService {
 			orderResponse.setLastPage(pageOrders.isLast());
 
 			return orderResponse;
+	}
+
+	@Override
+	public OrderDTO applyCoupon(Long orderId, String couponCode) {
+		Order order = orderRepo.findById(orderId).orElseThrow(() -> new ResourceNotFoundException("Order", "orderId", orderId));
+		Coupon couponUsed = couponRepo.findByCouponCode(couponCode)
+				.orElseThrow(() -> new ResourceNotFoundException("Coupon", "couponCode", couponCode));
+
+		if (order.getCoupon() != null) {
+			throw new APIException("Coupon already applied to the order");
+		}
+
+		double amountBeforeDiscount = order.getTotalAmount();
+		double amountAfterDiscount = amountBeforeDiscount-amountBeforeDiscount*couponUsed.getDiscountPercentage();
+
+		order.setTotalAmount(amountAfterDiscount);
+		order.setCoupon(couponUsed);
+		return modelMapper.map(order, OrderDTO.class);
 	}
 
 }

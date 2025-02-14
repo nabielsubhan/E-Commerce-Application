@@ -79,4 +79,11 @@ public class OrderController {
 
 		return new ResponseEntity<OrderResponse>(orderResponse, HttpStatus.FOUND);
 	}
+
+	@GetMapping("/admin/orders/{orderId}/coupons/{couponCode}")
+	public ResponseEntity<OrderDTO> applyCouponToOrder(@PathVariable Long orderId, @PathVariable String couponCode) {
+		OrderDTO order = orderService.applyCoupon(orderId, couponCode);
+
+		return new ResponseEntity<OrderDTO>(order, HttpStatus.OK);
+	}
 }

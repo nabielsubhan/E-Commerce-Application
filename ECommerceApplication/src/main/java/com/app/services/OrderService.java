@@ -18,4 +18,6 @@ public interface OrderService {
 	OrderDTO updateOrder(String email, Long orderId, String orderStatus);
 
 	OrderResponse getOrderbyCouponCode(String couponCode, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder);
+
+	OrderDTO applyCoupon(Long orderId, String couponCode);
 }

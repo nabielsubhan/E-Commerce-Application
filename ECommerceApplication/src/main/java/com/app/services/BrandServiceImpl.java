@@ -37,7 +37,7 @@ public class BrandServiceImpl implements BrandService {
 		Brand savedBrand = brandRepo.findByBrandName(brand.getBrandName());
 
 		if (savedBrand != null) {
-			throw new APIException("Category with the name '" + brand.getBrandName() + "' already exists !!!");
+			throw new APIException("Brand with the name '" + brand.getBrandName() + "' already exists !!!");
 		}
 
 		savedBrand = brandRepo.save(brand);
