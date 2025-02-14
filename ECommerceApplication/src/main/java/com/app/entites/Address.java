@@ -54,7 +54,7 @@ public class Address {
 	@ManyToMany(mappedBy = "addresses")
 	private List<User> users = new ArrayList<>();
 
-	@OneToMany(mappedBy = "address")
+	@OneToMany(mappedBy = "shippingAddress")
     private List<Order> orders;
 
 	public Address(String country, String state, String city, String pincode, String street, String buildingName) {
