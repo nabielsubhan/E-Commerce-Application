@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.config.AppConstants;
-import com.app.entites.Address;
-import com.app.enums.PaymentMethod;
 import com.app.payloads.AddressDTO;
 import com.app.payloads.OrderDTO;
 import com.app.payloads.OrderResponse;
@@ -35,21 +33,7 @@ public class OrderController {
 	
 	@PostMapping("/public/users/{email}/carts/{cartId}/payments/{paymentMethod}/order")
 	public ResponseEntity<?> orderProducts(@Valid @RequestBody AddressDTO address, @PathVariable String email, @PathVariable Long cartId, @PathVariable String paymentMethod) {
-		PaymentMethod method;
-		try {
-			method = PaymentMethod.valueOf(paymentMethod.toUpperCase());
-		} catch (IllegalArgumentException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body("Invalid payment method. Supported methods: COD.");
-		}
-
-		if (method != PaymentMethod.COD) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-					.body("Only COD (Cash on Delivery) is supported at the moment.");
-		}
-
-		Address shippingAddress = new Address(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreet(), address.getBuildingName());
-		OrderDTO order = orderService.placeOrder(email, cartId, shippingAddress);
+		OrderDTO order = orderService.placeOrder(email, cartId, paymentMethod, address);
 		return new ResponseEntity<OrderDTO>(order, HttpStatus.CREATED);
 		
 	}

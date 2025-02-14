@@ -20,8 +20,10 @@ import com.app.entites.Order;
 import com.app.entites.OrderItem;
 import com.app.entites.Payment;
 import com.app.entites.Product;
+import com.app.enums.PaymentMethod;
 import com.app.exceptions.APIException;
 import com.app.exceptions.ResourceNotFoundException;
+import com.app.payloads.AddressDTO;
 import com.app.payloads.OrderDTO;
 import com.app.payloads.OrderItemDTO;
 import com.app.payloads.OrderResponse;
@@ -70,9 +72,21 @@ public class OrderServiceImpl implements OrderService {
 	public ModelMapper modelMapper;
 
 	@Override
-	public OrderDTO placeOrder(String email, Long cartId, Address shippingAddress) {
+	public OrderDTO placeOrder(String email, Long cartId, String paymentMethod, AddressDTO address) {
+		PaymentMethod method;
+		try {
+			method = PaymentMethod.valueOf(paymentMethod.toUpperCase());
+		} catch (IllegalArgumentException e) {
+			throw new APIException("Invalid payment method. Supported methods: COD.");
+		}
 
+		if (method != PaymentMethod.COD) {
+			throw new APIException("Only COD (Cash on Delivery) is supported at the moment.");
+		}
+
+		Address shippingAddress = new Address(address.getCountry(), address.getState(), address.getCity(), address.getPincode(), address.getStreet(), address.getBuildingName());
 		shippingAddress = addressRepo.save(shippingAddress);
+
 		Cart cart = cartRepo.findCartByEmailAndCartId(email, cartId);
 
 		if (cart == null) {
