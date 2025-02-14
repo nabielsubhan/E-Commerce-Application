@@ -1,9 +1,5 @@
 package com.app.payloads;
 
-import java.util.List;
-
-import com.app.entites.Product;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
