@@ -250,4 +250,36 @@ public class ProductServiceImpl implements ProductService {
 		return "Product with productId: " + productId + " deleted successfully !!!";
 	}
 
+	@Override
+	public ProductResponse searchProductByBrandName(String brandName, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
+
+		Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending()
+				: Sort.by(sortBy).descending();
+
+		Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+
+		Page<Product> pageProducts = productRepo.findByBrand_BrandName(brandName, pageDetails);
+
+		List<Product> products = pageProducts.getContent();
+
+		if (products.size() == 0) {
+			throw new APIException("No products found for brand: " + brandName);
+		}
+
+		List<ProductDTO> productDTOs = products.stream()
+				.map(p -> modelMapper.map(p, ProductDTO.class))
+				.collect(Collectors.toList());
+
+		ProductResponse productResponse = new ProductResponse();
+		productResponse.setContent(productDTOs);
+		productResponse.setPageNumber(pageProducts.getNumber());
+		productResponse.setPageSize(pageProducts.getSize());
+		productResponse.setTotalElements(pageProducts.getTotalElements());
+		productResponse.setTotalPages(pageProducts.getTotalPages());
+		productResponse.setLastPage(pageProducts.isLast());
+
+		return productResponse;
+	}
+
+
 }

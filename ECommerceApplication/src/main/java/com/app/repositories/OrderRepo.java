@@ -2,6 +2,8 @@ package com.app.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -15,5 +17,7 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
 	Order findOrderByEmailAndOrderId(String email, Long cartId);
 
 	List<Order> findAllByEmail(String email);
+
+	Page<Order> findByCoupon_CouponCode(String couponCode, Pageable pageable);
 	
 }

@@ -201,4 +201,37 @@ public class OrderServiceImpl implements OrderService {
 		return modelMapper.map(order, OrderDTO.class);
 	}
 
+	@Override
+	public OrderResponse getOrderbyCouponCode(String couponCode, Integer pageNumber, Integer pageSize, String sortBy,
+				String sortOrder) {
+
+			Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc") ? Sort.by(sortBy).ascending()
+					: Sort.by(sortBy).descending();
+
+			Pageable pageDetails = PageRequest.of(pageNumber, pageSize, sortByAndOrder);
+
+			Page<Order> pageOrders = orderRepo.findByCoupon_CouponCode(couponCode, pageDetails);
+
+			List<Order> orders = pageOrders.getContent();
+
+			if (orders.size() == 0) {
+				throw new APIException("No orders found with coupon code: " + couponCode);
+			}
+
+			List<OrderDTO> orderDTOs = orders.stream()
+					.map(order -> modelMapper.map(order, OrderDTO.class))
+					.collect(Collectors.toList());
+
+			OrderResponse orderResponse = new OrderResponse();
+			
+			orderResponse.setContent(orderDTOs);
+			orderResponse.setPageNumber(pageOrders.getNumber());
+			orderResponse.setPageSize(pageOrders.getSize());
+			orderResponse.setTotalElements(pageOrders.getTotalElements());
+			orderResponse.setTotalPages(pageOrders.getTotalPages());
+			orderResponse.setLastPage(pageOrders.isLast());
+
+			return orderResponse;
+	}
+
 }
