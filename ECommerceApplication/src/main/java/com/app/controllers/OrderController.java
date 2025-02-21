@@ -80,7 +80,7 @@ public class OrderController {
 		return new ResponseEntity<OrderResponse>(orderResponse, HttpStatus.FOUND);
 	}
 
-	@GetMapping("public/orders/{orderId}/coupons/{couponCode}")
+	@PostMapping("public/orders/{orderId}/coupons/{couponCode}")
 	public ResponseEntity<OrderDTO> applyCouponToOrder(@PathVariable Long orderId, @PathVariable String couponCode) {
 		OrderDTO order = orderService.applyCoupon(orderId, couponCode);
 
