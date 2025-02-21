@@ -1,11 +1,5 @@
 package com.app.services;
-
-import com.app.entites.Brand;
-import com.app.entites.Like;
 import com.app.payloads.LikeDTO;
-import com.app.payloads.OrderDTO;
-import com.app.payloads.ProductDTO;
-
 import java.util.List;
 
 public interface LikeService {

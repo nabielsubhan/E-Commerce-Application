@@ -5,7 +5,6 @@ import com.app.entites.Product;
 import com.app.entites.User;
 import com.app.exceptions.APIException;
 import com.app.payloads.LikeDTO;
-import com.app.payloads.ProductDTO;
 import com.app.repositories.LikeRepo;
 import com.app.repositories.ProductRepo;
 import com.app.repositories.UserRepo;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
