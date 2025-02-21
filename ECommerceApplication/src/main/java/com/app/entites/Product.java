@@ -59,4 +59,8 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Like> likes = new ArrayList<>();
+
+
 }

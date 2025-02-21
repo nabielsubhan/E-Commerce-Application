@@ -50,4 +50,6 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name = "coupon_id")
 	private Coupon coupon;
+
+
 }
