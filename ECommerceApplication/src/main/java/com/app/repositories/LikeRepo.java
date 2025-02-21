@@ -8,7 +8,7 @@ import com.app.entites.OrderItem;
 import java.util.List;
 
 @Repository
-public interface LikeRepo extends JpaRepository<OrderItem, Long> {
+public interface LikeRepo extends JpaRepository<Like, Long> {
     Like findByEmailAndProductId(String email, Long productId);
 
     List<Like> findAllByEmail(String email);

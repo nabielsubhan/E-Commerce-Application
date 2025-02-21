@@ -79,11 +79,7 @@ public class LikeServiceImpl implements LikeService {
 
             Like likeToDB = likeRepo.save(likeDisimpan);
 
-
-
-
-
-
+            return modelMapper.map(likeToDB, LikeDTO.class);
         }
 
         public LikeDTO deleteLike(Long likeId) {

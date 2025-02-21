@@ -9,5 +9,5 @@ public interface LikeService {
 
     List<LikeDTO> getLikesByUser(String email);
     ProductDTO getLikeProduct(String email, Long productId);
-    LikeDTO addLike(String email, Long productId);
+    LikeDTO addLike(LikeDTO like);
 }
