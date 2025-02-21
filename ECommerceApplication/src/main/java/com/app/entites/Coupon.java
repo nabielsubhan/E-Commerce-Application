@@ -1,5 +1,6 @@
 package com.app.entites;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -38,6 +40,16 @@ public class Coupon {
     private double discountPercentage;
 
     private int quota;
+
+    @NotNull
+    @FutureOrPresent
+    @Column(nullable = false)
+    private LocalDate startDate;
+
+    @NotNull
+    @FutureOrPresent
+    @Column(nullable = false)
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "coupon")
     private List<Order> orders = new ArrayList<>();

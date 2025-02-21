@@ -244,6 +244,11 @@ public class OrderServiceImpl implements OrderService {
 			throw new APIException("Coupon already achieved its quota");
 		}
 
+		if (couponUsed.getStartDate() != null && couponUsed.getStartDate().isAfter(LocalDate.now()) || 
+    		couponUsed.getEndDate() != null && couponUsed.getEndDate().isBefore(LocalDate.now())) {
+    		throw new APIException("Coupon is not valid");
+		}
+
 		couponUsed.setQuota(couponUsed.getQuota()-1);
 
 		double amountBeforeDiscount = order.getTotalAmount();
@@ -251,6 +256,9 @@ public class OrderServiceImpl implements OrderService {
 
 		order.setTotalAmount(amountAfterDiscount);
 		order.setCoupon(couponUsed);
+
+		orderRepo.save(order);
+		couponRepo.save(couponUsed);
 		return modelMapper.map(order, OrderDTO.class);
 	}
 
