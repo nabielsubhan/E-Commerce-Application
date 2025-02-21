@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class LikeDTO {
     private Long likeId;
-    private String userName;
+    private String userEmail;
     private Long productId;
 }
